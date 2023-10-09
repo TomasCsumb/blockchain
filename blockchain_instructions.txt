@@ -1,0 +1,10 @@
+--Blockchain Instructions--
+--Tomas Diaz-Wahl--
+
+The blockchain python program will run on any operating system that has a recent version of python 3.
+
+To get the program either download the python file or use git clone from the following GitHub repo: https://github.com/TomasCsumb/blockchain.git
+
+To run the program use the following command in any terminal: python3 ./path/to/file/blockchain.py where path to file is replace by the actual path. 
+
+To add or change tests, edit the method test_blockchain() in blockchain.py 

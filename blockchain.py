@@ -115,6 +115,17 @@ class Block:
         return result_as_int == 0
     #end check_leading_zeros
 
+
+    def to_string(self) -> str:
+        block_str: str = "data: " + self.data + '\n'
+        block_str += "prefix: " + str(self.prefix) + '\n'
+        if self.prevHash is None:
+            block_str += "prev hash: NULL \n"
+        else:
+            block_str += "prev hash: " + self.prevHash + '\n'
+        block_str += "hash: " + self.hash + '\n'
+        return block_str
+
 #end class Block
     
     # Block(data: String, prevHash:  String, timeStamp: long, prefix:int) + generateBlockHash(): String + mineBlock(): String
@@ -192,6 +203,14 @@ class BlockChain:
     #end create_mask
 
     
+    def to_string(self) -> str:
+        blockchain_str: str = "Length of blockchain: " + str(self.chainSize) + '\n'
+        for block in self.blocks:
+            blockchain_str += block.to_string()
+        return blockchain_str
+    #end of to_string
+
+    
     """
     • verify() method: this method should go through every block in the blocks and check for  the following: 
     o The stored hash of the block is actually what it computes. 
@@ -245,16 +264,11 @@ class BlockChain:
         return len(invalid_list) == 0
     #end of verify
 
-
 #end class BlockChain
-
-class TestBlockChain:
-    pass
-#end TestBlockChain
 
 microseconds_conversion = 1000000
 
-def main():
+def test_blockchain():
     blockchain: BlockChain = BlockChain()
     genesis: Block = Block(data = "Genesis block",
                            prevHash = None,
@@ -285,7 +299,12 @@ def main():
         print("Block chain valid")
     else:
         print("Block chain invalid")
-#end main
+
+    print(blockchain.to_string())
+#end test_blockchain
+
+def main():
+    test_blockchain()
 
 
 if __name__ == "__main__":
